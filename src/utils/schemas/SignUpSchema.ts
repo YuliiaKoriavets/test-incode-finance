@@ -19,3 +19,4 @@ export const SignUpSchema = object({
         return this.parent.password === value;
       }),
   });
+

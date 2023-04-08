@@ -1,7 +1,8 @@
-// import { NavLink } from "react-router-dom"
+import { NavLink, useLocation } from 'react-router-dom';
 import SignUpForm from '../components/SignUpForm/SignUpForm';
 
 export default function SignUpPage() {
+  const location = useLocation();
   return (
     <div>
       <h3>InCode</h3>
@@ -10,7 +11,9 @@ export default function SignUpPage() {
       <SignUpForm />
       <p>
         I have an account.
-        {/* <NavLink>Go to Sign in</NavLink>  */}
+        <NavLink to={`/login`} state={{ from: location }}>
+          Go to Sign in
+        </NavLink>
       </p>
     </div>
   );
