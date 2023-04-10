@@ -1,4 +1,7 @@
-import { Formik, Form, Field, FormikProps, ErrorMessage } from 'formik';
+import { useDispatch } from 'react-redux';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { register } from '../../redux/auth/operations';
+import { Formik, Form, Field, FormikProps, ErrorMessage, FormikHelpers } from 'formik';
 import { SignUpSchema } from '../../utils/schemas/SignUpSchema';
 import { MessageErr } from './SignUpForm.styles';
 
@@ -9,16 +12,38 @@ interface FormValues {
   confirmPassword: string;
 }
 
+const initialValues: FormValues = {
+  password: '',
+  username: '',
+  displayName: '',
+  confirmPassword: '',
+};
+
 export default function SignUpForm() {
-  const initialValues: FormValues = {
-    password: '',
-    username: '',
-    displayName: '',
-    confirmPassword: '',
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (values: FormValues, { resetForm }: FormikHelpers<FormValues>) => {
+    const credentials = {
+      password: values.password,
+      username: values.username,
+      displayName: values.displayName,
+    };
+    console.log(credentials);
+
+    try {
+      const resultAction = await dispatch(register(credentials));
+      const data = unwrapResult(resultAction);
+      console.log(data);
+
+      // handle success
+    } catch (err) {
+      console.log(err);
+
+      // handle error
+    }
+    resetForm()
   };
-  const handleSubmit = ({ password, username, displayName }: FormValues) => {
-    console.log(password, username, displayName);
-  };
+
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={SignUpSchema}>
       {(props: FormikProps<FormValues>) => {

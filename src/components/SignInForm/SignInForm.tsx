@@ -1,4 +1,7 @@
-import { Formik, Form, Field, FormikProps, ErrorMessage } from 'formik';
+import { useDispatch } from 'react-redux';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { login } from '../../redux/auth/operations';
+import { Formik, Form, Field, FormikProps, ErrorMessage, FormikHelpers } from 'formik';
 import { SignInSchema } from '../../utils/schemas/SignInSchema';
 import { MessageErr } from './SignInForm.styles';
 
@@ -7,13 +10,33 @@ interface FormValues {
     password: string;
   }
 
+  const initialValues: FormValues = {
+    password: '',
+    username: '',
+  };
+
 export default function SignInForm() {
-    const initialValues: FormValues = {
-        password: '',
-        username: '',
-      };  
-      const handleSubmit = ({ password, username }: FormValues) => {
-        console.log(password, username);
+  const dispatch = useDispatch()
+     
+      const handleSubmit = async (values: FormValues, { resetForm }: FormikHelpers<FormValues>) => {
+        const credentials = {
+          password: values.password,
+          username: values.username,
+        };
+        console.log(credentials);
+
+        try {
+          const resultAction = await dispatch(login(credentials));
+          const data = unwrapResult(resultAction);
+          console.log(data);
+    
+          // handle success
+        } catch (err) {
+          console.log(err);
+    
+          // handle error
+        }
+        resetForm()
       };
       return (
         <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={SignInSchema}>
