@@ -39,7 +39,7 @@ const authSlice = createSlice({
       .addCase(register.fulfilled.type, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
-        state.isLoggedIn = true;
+        // state.isLoggedIn = true;
         state.error = null;
       })
       .addCase(register.rejected.type, (state, action) => {
