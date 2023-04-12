@@ -1,9 +1,8 @@
 import { useDispatch } from 'react-redux';
-import { unwrapResult } from '@reduxjs/toolkit';
 import { login } from '../../redux/auth/operations';
-import { Formik, Form, Field, FormikProps, ErrorMessage, FormikHelpers } from 'formik';
+import { Formik, FormikProps, ErrorMessage, FormikHelpers } from 'formik';
 import { SignInSchema } from '../../utils/schemas/SignInSchema';
-import { MessageErr } from './SignInForm.styles';
+import { StyledForm, Input, Label, MessageErr, Submit } from './Form.styles';
 
 interface FormValues {
     username: string;
@@ -23,12 +22,9 @@ export default function SignInForm() {
           password: values.password,
           username: values.username,
         };
-        console.log(credentials);
 
         try {
-          const resultAction = await dispatch(login(credentials));
-          const data = unwrapResult(resultAction);
-          console.log(data);
+           await dispatch(login(credentials));
     
           // handle success
         } catch (err) {
@@ -43,10 +39,10 @@ export default function SignInForm() {
           {(props: FormikProps<FormValues>) => {
             const { values, touched, errors, handleBlur, handleChange, isSubmitting } = props;
             return (
-              <Form>
+              <StyledForm>
     
-                <label htmlFor="username">User Name</label>
-                <Field
+                <Label htmlFor="username">User Name</Label>
+                <Input
                   type="text"
                   name="username"
                   value={values.username}
@@ -59,8 +55,8 @@ export default function SignInForm() {
                 />
                 <ErrorMessage name="username" component={MessageErr} />
     
-                <label htmlFor="password">Password</label>
-                <Field
+                <Label htmlFor="password">Password</Label>
+                <Input
                   type="password"
                   name="password"
                   value={values.password}
@@ -76,10 +72,10 @@ export default function SignInForm() {
                 />
                 <ErrorMessage name="password" component={MessageErr} />
     
-                <button type="submit" disabled={isSubmitting}>
+                <Submit type="submit" disabled={isSubmitting}>
                   Sign In
-                </button>
-              </Form>
+                </Submit>
+              </StyledForm>
             );
           }}
         </Formik>

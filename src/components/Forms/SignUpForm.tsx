@@ -1,9 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { unwrapResult } from '@reduxjs/toolkit';
+// import { IconContext } from 'react-icons';
+// import { FiEye, FiEyeOff } from 'react-icons/fi';
+import { Formik, FormikProps, ErrorMessage, FormikHelpers } from 'formik';
 import { register } from '../../redux/auth/operations';
-import { Formik, Form, Field, FormikProps, ErrorMessage, FormikHelpers } from 'formik';
 import { SignUpSchema } from '../../utils/schemas/SignUpSchema';
-import { MessageErr } from './SignUpForm.styles';
+import { StyledForm, Input, Label, MessageErr, Submit } from './Form.styles';
 
 interface FormValues {
   displayName: string;
@@ -28,20 +29,13 @@ export default function SignUpForm() {
       username: values.username,
       displayName: values.displayName,
     };
-    console.log(credentials);
 
     try {
-      const resultAction = await dispatch(register(credentials));
-      const data = unwrapResult(resultAction);
-      console.log(data);
-
-      // handle success
+      await dispatch(register(credentials));
     } catch (err) {
       console.log(err);
-
-      // handle error
     }
-    resetForm()
+    resetForm();
   };
 
   return (
@@ -49,9 +43,9 @@ export default function SignUpForm() {
       {(props: FormikProps<FormValues>) => {
         const { values, touched, errors, handleBlur, handleChange, isSubmitting } = props;
         return (
-          <Form>
-            <label htmlFor="displayName">Full Name</label>
-            <Field
+          <StyledForm>
+            <Label htmlFor="displayName">Full Name</Label>
+            <Input
               type="text"
               name="displayName"
               value={values.displayName}
@@ -66,8 +60,8 @@ export default function SignUpForm() {
             />
             <ErrorMessage name="displayName" component={MessageErr} />
 
-            <label htmlFor="username">User Name</label>
-            <Field
+            <Label htmlFor="username">User Name</Label>
+            <Input
               type="text"
               name="username"
               value={values.username}
@@ -80,8 +74,8 @@ export default function SignUpForm() {
             />
             <ErrorMessage name="username" component={MessageErr} />
 
-            <label htmlFor="password">Password</label>
-            <Field
+            <Label htmlFor="password">Password</Label>
+            <Input
               type="password"
               name="password"
               value={values.password}
@@ -97,8 +91,8 @@ export default function SignUpForm() {
             />
             <ErrorMessage name="password" component={MessageErr} />
 
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <Field
+            <Label htmlFor="confirmPassword">Confirm Password</Label>
+            <Input
               type="password"
               name="confirmPassword"
               value={values.confirmPassword}
@@ -114,10 +108,10 @@ export default function SignUpForm() {
             />
             <ErrorMessage name="confirmPassword" component={MessageErr} />
 
-            <button type="submit" disabled={isSubmitting}>
+            <Submit type="submit" disabled={isSubmitting}>
               Sign Up
-            </button>
-          </Form>
+            </Submit>
+          </StyledForm>
         );
       }}
     </Formik>

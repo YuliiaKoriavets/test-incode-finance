@@ -1,38 +1,27 @@
-import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { refresh } from '../redux/auth/operations';
 import PublicRoute from '../rotes/PublicRoute';
 import PrivateRoute from '../rotes/PrivateRoute';
-// import SignUpPage from '../pages/SignUpPage';
-// import SignInPage from '../pages/SignInPage';
-import AuthPage from '../pages/AuthPage';
-import HomePage from '../pages/HomePage';
+import AuthPage from '../pages/AuthPage/AuthPage';
+import HomePage from '../pages/HomePage/HomePage';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refresh());
+  }, [dispatch]);
+
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route
-          path="/register"
-          element={<PublicRoute redirectTo="/login" component={SignUpPage} />}
-        />
-          <Route
-          path="/login"
-          index element={
-            <PublicRoute redirectTo="/home" component={SignInPage} />
-          }
-        /> */}
-          <Route
-          path="/auth"
-          index element={
-            <PublicRoute redirectTo="/home" component={AuthPage} />
-          }
-        /> 
         <Route
-          path="/home"
-          element={
-            <PrivateRoute redirectTo="/auth" element={<HomePage/>} />
-          }
+          path="/auth"
+          index
+          element={<PublicRoute redirectTo="/home" component={AuthPage} />}
         />
+        <Route path="/home" element={<PrivateRoute redirectTo="/auth" element={<HomePage />} />} />
       </Routes>
     </BrowserRouter>
   );

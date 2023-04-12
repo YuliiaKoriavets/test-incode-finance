@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logout } from './operations';
+import { register, login, logout, refresh} from './operations';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -73,6 +73,22 @@ const authSlice = createSlice({
       })
       .addCase(logout.rejected.type, (state, action) => {
         state.isLoading = false;
+        state.error = action.payload || { errorMessage: 'Something went wrong' };
+      })
+      .addCase(refresh.pending.type, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(refresh.fulfilled.type, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+        state.isLoggedIn = true;
+        state.error = null;
+      })
+      .addCase(refresh.rejected.type, (state, action) => {
+        state.isLoading = false;
+        state.user = null;
+        state.isLoggedIn = false;
         state.error = action.payload || { errorMessage: 'Something went wrong' };
       });
   },

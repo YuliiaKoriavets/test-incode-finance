@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
+import { RootState } from './store';
 
 axios.defaults.baseURL = 'https://expa.fly.dev';
 
@@ -53,7 +54,6 @@ export const login = createAsyncThunk(
     try {
       const response = await axios.post('/auth/login', credentials);
       const { data } = response;
-      console.log(data.accessToken);
       setAuthHeader(data.accessToken);
       return data;
     } catch (err) {
@@ -66,8 +66,29 @@ export const login = createAsyncThunk(
   }
 ) as any;
 
+// Refresh action creator
+export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+  try {
+    const state = thunkAPI.getState() as RootState;
+    const refreshToken = state.auth.user?.refreshToken;
+    if (!refreshToken) {
+      throw new Error('No refresh token found');
+    }
+    const response = await axios.post('/auth/refresh', { refreshToken });
+    const { data } = response;
+    setAuthHeader(data.accessToken);
+    return data;
+  } catch (err) {
+    const error: AxiosError<KnownError> = err as any;
+    if (!error.response) {
+      throw err;
+    }
+    return thunkAPI.rejectWithValue(error.response.data);
+  }
+}) as any;
+
 // Logout action creator
-export const logout = createAsyncThunk('auth/logout', async (_, { rejectWithValue }) => {
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.get('/auth/logout');
     clearAuthHeader();
@@ -76,6 +97,6 @@ export const logout = createAsyncThunk('auth/logout', async (_, { rejectWithValu
     if (!error.response) {
       throw err;
     }
-    return rejectWithValue(error.response.data);
+    return thunkAPI.rejectWithValue(error.response.data);
   }
 }) as any;
