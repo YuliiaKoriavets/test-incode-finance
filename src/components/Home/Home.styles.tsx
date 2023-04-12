@@ -31,6 +31,14 @@ export const Title = styled.h2`
   text-transform: uppercase;
   color: #ffffff;
 `;
+export const Decor = styled.div`
+    position: absolute;
+    top: 120px;
+    left: 850px;
+  background-image: url('/images/decor.png'); 
+  width: 237px;
+  height: 188px;
+`
 export const TextWrapper = styled.div`
   margin-bottom: 48px;
   width: 466px;
@@ -56,9 +64,9 @@ export const Button = styled.button`
   line-height: 1.55;
   color: #ffffff;
 `;
-export const ImgWrapper = styled.div`
+export const Img = styled.div`
 margin-bottom: 41px;
-background: url();
+background: url('/images/img.png');
 width: 341px;
 height:  288px;
     

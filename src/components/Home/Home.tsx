@@ -5,11 +5,13 @@ import {
   Logo,
   LogoPart,
   Wrapper,
+  
   Title,
+  Decor,
   TextWrapper,
   Text,
   Button,
-  ImgWrapper
+  Img,
 } from './Home.styles';
 
 export default function Home() {
@@ -26,7 +28,10 @@ export default function Home() {
       <Logo>InCode</Logo>
       <LogoPart>Finance</LogoPart>
       <Wrapper>
-        <Title>Congratulations</Title>
+   
+          <Title>Congratulations</Title>
+          <Decor />
+      
         <TextWrapper>
           <Text>
             Now you are on the main page. Soon we will provide you with detailed feedback on the
@@ -36,7 +41,7 @@ export default function Home() {
         <Button type="button" onClick={handleClick}>
           Log Out
         </Button>
-        <ImgWrapper></ImgWrapper>
+        <Img />
       </Wrapper>
     </HomeWrapper>
   );
