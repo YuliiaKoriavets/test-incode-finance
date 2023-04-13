@@ -27,7 +27,7 @@ export const LogoPart = styled.p`
 `;
 export const FormTitle = styled.h2`
   margin-left: 48px;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
   font-weight: 700;
   font-size: 56px;
   line-height: 1.5;
@@ -52,4 +52,5 @@ export const Button = styled.button`
   color: #7faaf0;
   background-color: inherit;
   border: none;
+  cursor: pointer;
 `;

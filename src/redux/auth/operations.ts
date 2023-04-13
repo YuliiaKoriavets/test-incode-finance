@@ -5,7 +5,7 @@ import { RootState } from './store';
 axios.defaults.baseURL = 'https://expa.fly.dev';
 
 interface KnownError {
-  errorMessage: string;
+  message: string;
 }
 
 interface LoginCredentials {
@@ -37,12 +37,12 @@ export const register = createAsyncThunk(
       const response = await axios.post('/auth/register', credentials);
       const { data } = response;
       return data;
-    } catch (err) {
+    } catch (err) { 
       const error: AxiosError<KnownError> = err as any;
-      if (!error.response) {
-        throw err;
+      if (error.response?.status === 409) {
+        return alert('Username is already used by another user.')
       }
-      return rejectWithValue(error.response.data);
+      return rejectWithValue('Something went wrong. Please try again later.');
     }
   }
 ) as any;
@@ -58,10 +58,12 @@ export const login = createAsyncThunk(
       return data;
     } catch (err) {
       const error: AxiosError<KnownError> = err as any;
-      if (!error.response) {
-        throw err;
+      console.log(error.response?.data?.message);
+      
+      if (error.response?.status === 404) {
+        rejectWithValue(error.response?.data?.message)
       }
-      return rejectWithValue(error.response.data);
+      return rejectWithValue('Something went wrong.');
     }
   }
 ) as any;

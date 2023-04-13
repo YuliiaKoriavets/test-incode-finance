@@ -5,7 +5,6 @@ import {
   Logo,
   LogoPart,
   Wrapper,
-  
   Title,
   Decor,
   TextWrapper,
@@ -28,10 +27,9 @@ export default function Home() {
       <Logo>InCode</Logo>
       <LogoPart>Finance</LogoPart>
       <Wrapper>
-   
-          <Title>Congratulations</Title>
-          <Decor />
-      
+        <Title>Congratulations</Title>
+        <Decor />
+
         <TextWrapper>
           <Text>
             Now you are on the main page. Soon we will provide you with detailed feedback on the
