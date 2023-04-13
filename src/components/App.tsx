@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { refresh } from '../redux/auth/operations';
 import PublicRoute from '../rotes/PublicRoute';
 import PrivateRoute from '../rotes/PrivateRoute';
@@ -14,8 +14,12 @@ function App() {
   }, [dispatch]);
 
   return (
-    <BrowserRouter basename="test-incode-finance">
+    <HashRouter>
       <Routes>
+				<Route
+					path='/'
+					element={<Navigate to="/home" />}
+				/>
         <Route
           path="/auth"
           index
@@ -23,7 +27,7 @@ function App() {
         />
         <Route path="/home" element={<PrivateRoute redirectTo="/auth" element={<HomePage />} />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
