@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.c2f8d803.css",
-    "main.js": "/static/js/main.7457758d.js",
-    "static/js/787.e1e8066f.chunk.js": "/static/js/787.e1e8066f.chunk.js",
-    "index.html": "/index.html",
-    "main.c2f8d803.css.map": "/static/css/main.c2f8d803.css.map",
-    "main.7457758d.js.map": "/static/js/main.7457758d.js.map",
-    "787.e1e8066f.chunk.js.map": "/static/js/787.e1e8066f.chunk.js.map"
+    "main.css": "/test-incode-finance/static/css/main.c2f8d803.css",
+    "main.js": "/test-incode-finance/static/js/main.556d4166.js",
+    "static/js/787.e1e8066f.chunk.js": "/test-incode-finance/static/js/787.e1e8066f.chunk.js",
+    "index.html": "/test-incode-finance/index.html",
+    "main.c2f8d803.css.map": "/test-incode-finance/static/css/main.c2f8d803.css.map",
+    "main.556d4166.js.map": "/test-incode-finance/static/js/main.556d4166.js.map",
+    "787.e1e8066f.chunk.js.map": "/test-incode-finance/static/js/787.e1e8066f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c2f8d803.css",
-    "static/js/main.7457758d.js"
+    "static/js/main.556d4166.js"
   ]
 }
