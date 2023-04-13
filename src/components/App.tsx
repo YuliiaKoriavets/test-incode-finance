@@ -14,7 +14,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="test-incode-finance">
       <Routes>
         <Route
           path="/auth"
