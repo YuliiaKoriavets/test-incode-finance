@@ -1,15 +1,16 @@
 {
   "files": {
     "main.css": "/test-incode-finance/static/css/main.c2f8d803.css",
-    "main.js": "/test-incode-finance/static/js/main.556d4166.js",
+    "main.js": "/test-incode-finance/static/js/main.54ba6547.js",
     "static/js/787.e1e8066f.chunk.js": "/test-incode-finance/static/js/787.e1e8066f.chunk.js",
+    "static/media/img.png": "/test-incode-finance/static/media/img.1eb21c3a07ea528c3115.png",
     "index.html": "/test-incode-finance/index.html",
     "main.c2f8d803.css.map": "/test-incode-finance/static/css/main.c2f8d803.css.map",
-    "main.556d4166.js.map": "/test-incode-finance/static/js/main.556d4166.js.map",
+    "main.54ba6547.js.map": "/test-incode-finance/static/js/main.54ba6547.js.map",
     "787.e1e8066f.chunk.js.map": "/test-incode-finance/static/js/787.e1e8066f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c2f8d803.css",
-    "static/js/main.556d4166.js"
+    "static/js/main.54ba6547.js"
   ]
 }
