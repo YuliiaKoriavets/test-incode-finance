@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import img from '../../images/img.png'
+import decor from '../../images/decor.png'
 
 export const HomeWrapper = styled.div`
   padding-top: 48px;
@@ -35,7 +37,7 @@ export const Decor = styled.div`
   position: absolute;
   top: 120px;
   left: 850px;
-  background-image: url('/images/decor.png');
+  background-image: url('${decor}');
   width: 237px;
   height: 188px;
 `;
@@ -67,7 +69,7 @@ export const Button = styled.button`
 `;
 export const Img = styled.div`
   margin-bottom: 41px;
-  background: url('/images/img.png');
+  background: url('${img}');
   width: 341px;
   height: 288px;
 `;

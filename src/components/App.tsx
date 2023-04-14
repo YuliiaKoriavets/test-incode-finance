@@ -16,10 +16,7 @@ function App() {
   return (
     <HashRouter>
       <Routes>
-				<Route
-					path='/'
-					element={<Navigate to="/home" />}
-				/>
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route
           path="/auth"
           index
